@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vicinity-media/capacitor-app-tag.git"
+    "url": "git+https://github.com/Gam13l/vicinity-media-tag.git"
   },
   "bugs": {
-    "url": "https://github.com/vicinity-media/capacitor-app-tag/issues"
+    "url": "https://github.com/Gam13l/vicinity-media-tag.git/issues"
   },
   "keywords": [
     "capacitor",
@@ -74,5 +74,8 @@
     "android": {
       "src": "android"
     }
+  },
+  "dependencies": {
+    "@capacitor/geolocation": "^4.1.0"
   }
 }

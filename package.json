@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gam13l/vicinity-media-tag.git"
+    "url": "git+https://github.com/vicinitymedia/capacitor-app-tag.git"
   },
   "bugs": {
-    "url": "https://github.com/Gam13l/vicinity-media-tag.git/issues"
+    "url": "https://github.com/vicinitymedia/capacitor-app-tag.git/issues"
   },
   "keywords": [
     "capacitor",

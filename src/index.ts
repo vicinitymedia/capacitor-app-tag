@@ -1,6 +1,8 @@
 import { registerPlugin } from '@capacitor/core';
 
-import type { VicinityMediaTagPlugin } from './definitions';
+import { Geolocation } from '@capacitor/geolocation';
+
+import type { VicinityMediaTagPlugin, PermissionStatus } from './definitions';
 
 const VicinityMediaTag = registerPlugin<VicinityMediaTagPlugin>(
   'VicinityMediaTag',
@@ -11,3 +13,5 @@ const VicinityMediaTag = registerPlugin<VicinityMediaTagPlugin>(
 
 export * from './definitions';
 export { VicinityMediaTag };
+export { Permissions };
+export { Location };

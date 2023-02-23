@@ -1,0 +1,11 @@
+{
+  "appId": "com.example.app",
+  "appName": "vicinity-tags",
+  "bundledWebRuntime": false,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

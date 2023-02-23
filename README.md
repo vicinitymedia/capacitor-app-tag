@@ -1,37 +1,12 @@
-# vicinity-media-tag
+## Created with Capacitor Create App
 
-Location, ip address and device tracking for advertising/marketing applications
+This app was created using [`@capacitor/create-app`](https://github.com/ionic-team/create-capacitor-app),
+and comes with a very minimal shell for building an app.
 
-## Install
+### Running this example
+
+To run the provided example, you can use `npm start` command.
 
 ```bash
-npm install vicinity-media-tag
-npx cap sync
+npm start
 ```
-
-## API
-
-<docgen-index>
-
-* [`echo(...)`](#echo)
-
-</docgen-index>
-
-<docgen-api>
-<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
-
-### echo(...)
-
-```typescript
-echo(options: { value: string; }) => Promise<{ value: string; }>
-```
-
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ value: string; }</code> |
-
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
-
---------------------
-
-</docgen-api>

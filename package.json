@@ -17,6 +17,7 @@
     "@capacitor/camera": "latest",
     "@capacitor/core": "latest",
     "@capacitor/device": "^4.1.0",
+    "@capacitor/geolocation": "^4.1.0",
     "@capacitor/ios": "^4.6.3",
     "@capacitor/splash-screen": "latest"
   },

@@ -1,4 +1,4 @@
-## Created with Capacitor Create App
+## Vicinity Tag capacitor app
 
 Github repository
 https://github.com/vicinitymedia/capacitor-app-tag

@@ -36,12 +36,12 @@ you will need to change  the zoneId to the variables.
 
 
 Geolocation.getCurrentPosition().then(position => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      const url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + latitude + "&lon=" + longitude;
-      fetch(url)
-      .then(response => response.json())
-      .then(addresData => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    const url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + latitude + "&lon=" + longitude;
+    fetch(url)
+    .then(response => response.json())
+    .then(addresData => {
         const address = addresData.display_name;
         const zoneId = '1211';
         const user_agent = navigator.userAgent;
@@ -49,8 +49,8 @@ Geolocation.getCurrentPosition().then(position => {
         const app_name = navigator.appName;
         console.log(address);
         fetch("https://api.ipify.org?format=json")
-          .then(response => response.json())
-          .then(ipdata => {
+        .then(response => response.json())
+        .then(ipdata => {
             const ip_address = ipdata
             const data = {
               "zoneId": zoneId,
@@ -62,15 +62,13 @@ Geolocation.getCurrentPosition().then(position => {
               "longitude": longitude,
               "address": address
             };
-
-
             postData('https://leo.vic-m.co/api/mobile-tags', data)
               .then(response => {
                 console.log(response);
-              })
+            })
               .catch(error => {
                 console.error(error);
-              });
+            });
           });
       });
     }).catch(error => {
@@ -81,20 +79,20 @@ Geolocation.getCurrentPosition().then(position => {
 
     
 function postData(url, data) {
-      return fetch(url, {
+    return fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-      })
+    })
         .then(response => response.json())
         .then(data => {
           return data;
         })
         .catch(error => {
           console.error(error);
-        });
-    }
+    });
+}
 
 

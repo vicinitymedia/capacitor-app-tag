@@ -5,34 +5,45 @@ https://github.com/vicinitymedia/capacitor-app-tag
 
 
 For app installation
-  
+
+```
 npm install 
-
+```
 
 then run 
 
+```
 npm run build 
-
+```
 
 then run 
 
+```
 npm sync
-
+```
 
 for web run 
 
+```
 npm start 
-
+```
 
 for android  run
 
+```
 npx cap run android
-
+```
 
 
 You need to add this code that will post the data to the end point on the postData function. 
 
 you will need to change  the zoneId to the variables. 
+
+Also import the Geolocation.
+
+```
+import { Geolocation } from '@capacitor/geolocation';
+```
 
 ```
 Geolocation.getCurrentPosition().then(position => {
@@ -74,10 +85,7 @@ Geolocation.getCurrentPosition().then(position => {
     }).catch(error => {
       console.error(error);
 });
-```
-
-
- ```   
+   
 function postData(url, data) {
     return fetch(url, {
         method: 'POST',

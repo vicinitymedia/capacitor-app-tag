@@ -34,7 +34,7 @@ You need to add this code that will post the data to the end point on the postDa
 
 you will need to change  the zoneId to the variables. 
 
-
+```
 Geolocation.getCurrentPosition().then(position => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
@@ -74,10 +74,10 @@ Geolocation.getCurrentPosition().then(position => {
     }).catch(error => {
       console.error(error);
 });
+```
 
 
-
-    
+ ```   
 function postData(url, data) {
     return fetch(url, {
         method: 'POST',
@@ -94,5 +94,6 @@ function postData(url, data) {
           console.error(error);
     });
 }
+```
 
 

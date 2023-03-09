@@ -38,22 +38,9 @@ class Welcome extends HTMLElement {
 
     const addressDiv = this.querySelector("#address");
 
-    if (navigator.geolocation) {
-
-      navigator.geolocation.getCurrentPosition(showPosition);
-
-    } else {
-
-      locationDiv.innerText = "Geolocation is not supported by this browser.";
-      
-    }
-
-    function showPosition(position) {
-
+    Geolocation.getCurrentPosition().then(position => {
       const latitude = position.coords.latitude;
-
       const longitude = position.coords.longitude;
-      
       locationDiv.innerText = "Latitude: " + latitude + ", Longitude: " + longitude;
 
       fetch("https://nominatim.openstreetmap.org/reverse?format=json&lat="+latitude+"&lon="+longitude)
@@ -61,7 +48,9 @@ class Welcome extends HTMLElement {
       .then(data => {
       addressDiv.innerText = "Address: "+  data.display_name;
       });
-    }
+    }).catch(error => {
+      console.error(error);
+    });
 
     const serialNumberDiv = this.querySelector("#serial");
 

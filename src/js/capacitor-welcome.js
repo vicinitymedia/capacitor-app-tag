@@ -1,5 +1,5 @@
 import { Capacitor, Plugins } from '@capacitor/core';
-
+import { Geolocation } from '@capacitor/geolocation';
 const { Http, Device } = Plugins;
 
 class Welcome extends HTMLElement {
@@ -40,12 +40,12 @@ class Welcome extends HTMLElement {
         .then(response => response.json())
         .then(addresData => {
           const addressDiv = this.querySelector("#address")
-          addressDiv.innerText = "Address: " + data.display_name;
+          addressDiv.innerText = "Address: " + addresData.display_name;
           const address = addresData.display_name;
 
 
           const zoneIdDiv = this.querySelector("#zoneId");
-          zoneIdDiv.innerText = "User Agent: " + "1211";
+          zoneIdDiv.innerText = "ZoneId: " + "1211";
           const zoneId = "1211";
 
           const userAgentDiv = this.querySelector("#user-agent");
@@ -64,8 +64,9 @@ class Welcome extends HTMLElement {
             .then(response => response.json())
             .then(ipdata => {
               const ipAddressDiv = this.querySelector("#ip-address");
-              ipAddressDiv.innerText = "IP Address: " + ipdata;
-              const ip_address = ipdata
+              const ip_address = ipdata.ip;
+              ipAddressDiv.innerText = "IP Address: " + ip_address;
+
               const data = {
                 "zoneId": zoneId,
                 "rf_id": rf_id,
@@ -88,6 +89,22 @@ class Welcome extends HTMLElement {
     }).catch(error => {
       console.error(error);
     });
+    function postData(url, data) {
+      return fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+      })
+          .then(response => response.json())
+          .then(data => {
+            return data;
+          })
+          .catch(error => {
+            console.error(error);
+      });
+  }
 
   }
 }

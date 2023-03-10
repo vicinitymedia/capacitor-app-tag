@@ -1,6 +1,6 @@
-import { Capacitor ,Plugins } from '@capacitor/core';
+import { Capacitor, Plugins } from '@capacitor/core';
 
-const {Http, Device  } = Plugins;
+const { Http, Device } = Plugins;
 
 class Welcome extends HTMLElement {
   constructor() {
@@ -11,11 +11,11 @@ class Welcome extends HTMLElement {
         <h1>Vicinity Tags</h1>
         <p id="user-agent"></p>
         <br>
-        <p id="app-details"></p>
-        <br>
         <p id="app-name"></p>
         <br>
-        <p id="serial"></p>
+        <p id="zoneId"></p>
+        <br>
+        <p id="rfid"></p>
         <br>
         <p id="ip-address"></p>
         <br>
@@ -28,51 +28,67 @@ class Welcome extends HTMLElement {
 
   connectedCallback() {
 
-    // Get User Agent Details
-    const userAgentDiv = this.querySelector("#user-agent");
-
-    userAgentDiv.innerText = "User Agent: " + navigator.userAgent;
-
-    // Get Location Details
-    const locationDiv = this.querySelector("#location");
-
-    const addressDiv = this.querySelector("#address");
 
     Geolocation.getCurrentPosition().then(position => {
+      const locationDiv = this.querySelector("#location");
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       locationDiv.innerText = "Latitude: " + latitude + ", Longitude: " + longitude;
 
-      fetch("https://nominatim.openstreetmap.org/reverse?format=json&lat="+latitude+"&lon="+longitude)
-      .then(response => response.json())
-      .then(data => {
-      addressDiv.innerText = "Address: "+  data.display_name;
-      });
+      const url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + latitude + "&lon=" + longitude;
+      fetch(url)
+        .then(response => response.json())
+        .then(addresData => {
+          const addressDiv = this.querySelector("#address")
+          addressDiv.innerText = "Address: " + data.display_name;
+          const address = addresData.display_name;
+
+
+          const zoneIdDiv = this.querySelector("#zoneId");
+          zoneIdDiv.innerText = "User Agent: " + "1211";
+          const zoneId = "1211";
+
+          const userAgentDiv = this.querySelector("#user-agent");
+          userAgentDiv.innerText = "User Agent: " + navigator.userAgent;
+          const user_agent = navigator.userAgent;
+
+          const serialNumberDiv = this.querySelector("#rfid");
+          serialNumberDiv.innerText = "Rf_id: " + navigator.platform;
+          const rf_id = navigator.appName;
+
+          const appNameDiv = this.querySelector("#app-name");
+          appNameDiv.innerText = "App Name: " + navigator.appName;
+          const app_name = navigator.appName;
+          console.log(address);
+          fetch("https://api.ipify.org?format=json")
+            .then(response => response.json())
+            .then(ipdata => {
+              const ipAddressDiv = this.querySelector("#ip-address");
+              ipAddressDiv.innerText = "IP Address: " + ipdata;
+              const ip_address = ipdata
+              const data = {
+                "zoneId": zoneId,
+                "rf_id": rf_id,
+                "app_name": app_name,
+                "user_agent": user_agent,
+                "ip_address": ip_address,
+                "latitude": latitude,
+                "longitude": longitude,
+                "address": address
+              };
+              postData('https://leo.vic-m.co/api/mobile-tags', data)
+                .then(response => {
+                  console.log(response);
+                })
+                .catch(error => {
+                  console.error(error);
+                });
+            });
+        });
     }).catch(error => {
       console.error(error);
     });
 
-    const serialNumberDiv = this.querySelector("#serial");
-
-    serialNumberDiv.innerText = "Serial Number: " + navigator.platform;
-
-    // Get App Details
-
-    const appDetailsDiv = this.querySelector("#app-details");
-    const appNameDiv = this.querySelector("#app-name");
-
-    appDetailsDiv.innerText = "Application Details: " +navigator.appCodeName;
-
-    appNameDiv.innerText = "App Name: " +  navigator.appName;
-
-    // Get IP Address
-    const ipAddressDiv = this.querySelector("#ip-address");
-
-    fetch("https://api.ipify.org?format=json")
-      .then(response => response.json())
-      .then(data => {
-        ipAddressDiv.innerText = "IP Address: " + data.ip;
-      });
   }
 }
 

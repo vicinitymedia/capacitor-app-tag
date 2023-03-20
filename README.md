@@ -76,15 +76,15 @@ Geolocation.getCurrentPosition().then(position => {
             };
             postData('https://leo.vic-m.co/api/mobile-tags', data)
               .then(response => {
-         
+                
             })
               .catch(error => {
-           
+                
             });
           });
       });
     }).catch(error => {
-
+      
 });
    
 function postData(url, data) {
@@ -100,7 +100,7 @@ function postData(url, data) {
           return data;
         })
         .catch(error => {
-   
+          
     });
 }
 ```

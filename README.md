@@ -41,6 +41,8 @@ you will need to change  the zoneId to the variables.
 
 Also import the Geolocation.
 
+Request the zoneId from Vicinity techteam, as this is a away of identifying the client.
+
 ```
 import { Geolocation } from '@capacitor/geolocation';
 ```
@@ -58,7 +60,6 @@ Geolocation.getCurrentPosition().then(position => {
         const user_agent = navigator.userAgent;
         const rf_id = navigator.appName;
         const app_name = navigator.appName;
-        console.log(address);
         fetch("https://api.ipify.org?format=json")
         .then(response => response.json())
         .then(ipdata => {
@@ -75,15 +76,15 @@ Geolocation.getCurrentPosition().then(position => {
             };
             postData('https://leo.vic-m.co/api/mobile-tags', data)
               .then(response => {
-                console.log(response);
+         
             })
               .catch(error => {
-                console.error(error);
+           
             });
           });
       });
     }).catch(error => {
-      console.error(error);
+
 });
    
 function postData(url, data) {
@@ -99,7 +100,7 @@ function postData(url, data) {
           return data;
         })
         .catch(error => {
-          console.error(error);
+   
     });
 }
 ```
